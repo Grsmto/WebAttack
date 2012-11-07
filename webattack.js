@@ -335,27 +335,38 @@ function WebAttack() {
 		$gameMessage = $('#WEBATTACK-MESSAGE');
 		$gameMessage.css('margin-left', - $gameMessage.width()/2);
 		$gameMessage.delay(200).animate({
-			opacity: 1,
-			fontSize: '+=100'
-		}, 'slow', function() {
-			$(this).delay(300).queue(function() {
-				$(this).hide();
-				$background.hide();
-				launchGame();
-			});
-		});
+								opacity: 1,
+								fontSize: '+=100'
+								}, 'slow', function() {
+									$(this).delay(300).queue(function() {
+										$(this).css('display','none');
+										$background.css('display','none');
+										launchGame();
+									});
+								});
 	};
+	
 	
 	function noWordsToAttack() {
 		console.log('no word to attack');
 		
-		$background.show();
+		$background.css('display', 'block');
 		$background.animate({opacity:0.3});
 		
-		// $gameMessage.css({'font-size':'0'});
-		$gameMessage.text('No words to attack on this page ! Please choose another page');
-		$gameMessage.css('font-size', '80px').show();
-	};
+		$gameMessage.css({'display':'block', 'opacity':'0', 'font-size':'0'});
+		$gameMessage = $('#WEBATTACK-MESSAGE');
+		$gameMessage.text('No words to attack on this page ! Scroll and reload !');
+		$gameMessage.delay(200).animate({
+								opacity: 1,
+								fontSize: '+=100'
+								}, 'slow', function() {
+									$(this).delay(300).queue(function() {
+										$(this).css('display','none');
+										$background.css('display','none');
+										launchGame();
+									});
+								});
+	}
 	
 	function launchGame(){
 		var totalWordsNumber = $('.WEBATTACKENEMY').length;
